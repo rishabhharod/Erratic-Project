@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order: one
+  user: one
+  seller: one
+  total_amount: 9.99
+  discount: 9.99
+  payment_mode: MyString
+
+two:
+  order: two
+  user: two
+  seller: two
+  total_amount: 9.99
+  discount: 9.99
+  payment_mode: MyString
