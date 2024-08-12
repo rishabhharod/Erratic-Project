@@ -1,0 +1,14 @@
+<%= form_for @product, url: "/products" do |f| %>
+    <h1> Add Product </h1>
+         <%= f.label :name %>
+         <%= f.text_field :name, autofocus: true, autocomplete: "name" %><br />
+         <%= f.label :description %>
+         <%= f.text_area :description, autofocus: true, autocomplete: "description" %><br />
+         <%= f.label :price %>
+         <%= f.number_field :price, autofocus: true, autocomplete: "price" %><br />
+         <%= f.label :stock %>
+         <%= f.number_field :stock, autofocus: true, autocomplete: "stock" %><br />
+         <%= f.label :product_type %>
+         <%= f.text_field :product_type, autofocus: true, autocomplete: "product_type" %><br />
+         <%= f.submit "create product" %>
+<% end %>

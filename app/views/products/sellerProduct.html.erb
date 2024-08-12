@@ -1,0 +1,38 @@
+<head>
+<style>
+table, td, th {
+  border: 1px solid;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+}
+td,th{
+  text-align: center;
+}
+</style>
+</head>
+<center><h2><%= current_user.name %>'s Products</h2></center>
+<div>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>             
+    <th>Description</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Seller ID</th>
+  </tr>
+ <% @sellerProduct.each do |product| %>
+  <tr>
+    <td><%=product.id%></td>
+    <td><%=product.name%></td>        
+    <td><%=product.description %></td>   
+    <td><%=product.price%></td>      
+    <td><%=product.stock%></td>      
+    <td><%=product.seller_id%></td>      
+  </tr>
+  <% end %>
+ </table>
+ </div>
