@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  get "products/sellerProduct"
+  get "sellerProduct", to: 'products#sellerProduct'
   root 'home#index'
   resources :homes
   resources :products

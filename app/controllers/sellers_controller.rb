@@ -4,7 +4,10 @@ class SellersController < ApplicationController
     end
     def create
         if current_user.role.eql?("seller") 
-            if !current_user.seller.present?
+            if current_user.seller.present?
+                flash[:notice] = "seller details are exist.."
+                redirect_to root_path
+            else
                 @seller = Seller.new(seller_params)
                 if @seller.save
                     flash[:notice] = "seller details submitted successfully."
@@ -13,9 +16,6 @@ class SellersController < ApplicationController
                     flash.now[:alert] = "seller id can't be genrated."
                     render :new
                 end
-            else
-                flash[:notice] = "seller details are exist.."
-                redirect_to root_path
             end
         else
             flash[:notice] = "You are not a seller"
