@@ -1,0 +1,13 @@
+<h1> seller Details </h1>
+<%= form_for @seller , url: "/sellers" do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+         <%= f.label :company_email %>
+         <%= f.email_field :company_email, autofocus: true, autocomplete: "company_email" %><br /><br />
+         <%= f.label :GSTIN_number %>
+         <%= f.text_field :GSTIN_number, autofocus: true, autocomplete: "GSTIN_number" %><br /><br />
+         <%= f.label :contact %>
+         <%= f.number_field :contact, autofocus: true, autocomplete: "contact" %><br /><br />
+         <%= f.label :category %>
+         <%= f.text_field :category, autofocus: true, autocomplete: "category" %><br /><br />
+         <%= f.submit "Submit Details" %>
+<% end %>
