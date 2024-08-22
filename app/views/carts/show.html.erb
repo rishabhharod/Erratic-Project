@@ -34,7 +34,7 @@ body{
 .form-input:focus{
     box-shadow: none;
 }
-.card-body button{
+.card-body a {
     border:none;
     background-color:#ffd814;
     border-radius:30px;
@@ -43,37 +43,36 @@ body{
     padding: 9px 26px;
 }
 </style>
-<div class="container">
-  <div class="row height d-flex justify-content-center align-items-center">
-    <div class="col-md-6">
-      <div class="form">
-          <i class="fa fa-search"></i>
-          <input type="text" class="form-control form-input" placeholder="Search anything...">
-      </div>
-    </div>
-  </div>            
-</div>
+<center><h3><%=current_user.name%>'s Cart</h3></center>
 <div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
-<% @products.each do |product| %>
+<% total_price = 0 %>
+<% @cart_items.each do |item| %>
 <div class="card" style="width: 18rem;margin:15px">
-    <% if product.images.attached? %>
-        <%= link_to main_app.rails_blob_url(product.images.first), target: "_blank" do %>
-          <%= image_tag main_app.rails_blob_url(product.images.first), class: 'img-thumbnail' %>
+    <% if item.product.images.attached? %>
+        <%= link_to main_app.rails_blob_url(item.product.images.first), target: "_blank" do %>
+          <%= image_tag main_app.rails_blob_url(item.product.images.first), class: 'img-thumbnail' %>
         <% end %>
     <% else %>
         <img src="..." class="card-img-top" alt="...">
     <% end %>
   <div class="card-body">
-    <h5 class="card-title"><%=product.name %></h5>
-    <p class="card-text"><%=product.description%></p>
+    <h5 class="card-title"><%=item.product.name %></h5>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Price: <%=product.price %></li>
-    <li class="list-group-item">Stock: <%=product.stock %></li>
+    <li class="list-group-item">Quantity: <%=item.quantity %></li>
+    <li class="list-group-item">Price: <%=item.product.price %></li>
+    <% total_price += (item.product.price*item.quantity) %>
   </ul>
   <div class="card-body">
-    <%= button_to "Add to cart", cart_items_path(id: product.id) %>
+    <%= link_to "Remove product", cart_item_path(item),data:{
+        turbo_method: :delete,
+        turbo_confirm: "Are You Sure?"
+    } %>
   </div>
 </div>
 <% end %>
+</div>
+<div>
+<h5>Bill Invoice</h5>
+<p>total Amount to pay: <%=total_price%></p>
 </div>
