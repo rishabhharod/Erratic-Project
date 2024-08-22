@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+      @products = Product.all
   end
 
   def new 
@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
+      @product = Product.find(params[:id])
   end
 
   def update
@@ -59,19 +59,19 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    @cart = current_user.cart || current_user.create_cart
-    @order_items = @cart.order_items
+      @cart = current_user.cart || current_user.create_cart
+      @order_items = @cart.order_items.
   end
 
   private
-
+  
   def product_params
     params.require(:product).permit(:name,:description,:price,:stock,:product_type,images:[])
   end
-
   def attach_images(product)
-    if params[:product][:images].present?
-        product.images.attach(params[:product][:images])
-    end
+      if params[:product][:images].present?
+          product.images.attach(params[:product][:images])
+      end
   end
+
 end
