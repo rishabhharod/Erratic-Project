@@ -1,7 +1,7 @@
 class CartItemsController < ApplicationController
   before_action :set_cart
   def create
-    product = Product.find(params[:id])
+    product = Product.find(params[:product_id])
     @cart_item = @cart.cart_items.find_or_initialize_by(product_id: product.id)
     if @cart_item.new_record?
       @cart_item.quantity = 1

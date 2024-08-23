@@ -72,7 +72,7 @@ body{
     <li class="list-group-item">Stock: <%=product.stock %></li>
   </ul>
   <div class="card-body">
-    <%= button_to "Add to cart", cart_items_path(id: product.id) %>
+    <%= button_to "Add to cart", cart_items_path(product_id: product.id) %>
   </div>
 </div>
 <% end %>
