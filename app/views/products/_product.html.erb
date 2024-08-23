@@ -42,6 +42,10 @@ body{
     font-size:14px;
     padding: 9px 26px;
 }
+a{
+  text-decoration:none;
+  color: black;
+}
 </style>
 <div class="container">
   <div class="row height d-flex justify-content-center align-items-center">
@@ -52,14 +56,13 @@ body{
       </div>
     </div>
   </div>            
-</div>
-<div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
-<% @products.each do |product| %>
-<div class="card" style="width: 18rem;margin:15px">
+  </div>
+  <div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
+  <% @products.each do |product| %>
+    <div class="card" style="width: 18rem;margin:15px">
+    <%= link_to product_path(product) do %>
     <% if product.images.attached? %>
-        <%= link_to main_app.rails_blob_url(product.images.first), target: "_blank" do %>
-          <%= image_tag main_app.rails_blob_url(product.images.first), class: 'img-thumbnail' %>
-        <% end %>
+        <%= image_tag main_app.rails_blob_url(product.images.first), class: 'img-thumbnail' %>
     <% else %>
         <img src="..." class="card-img-top" alt="...">
     <% end %>
@@ -71,6 +74,7 @@ body{
     <li class="list-group-item">Price: <%=product.price %></li>
     <li class="list-group-item">Stock: <%=product.stock %></li>
   </ul>
+  <% end %>
   <div class="card-body">
     <%= button_to "Add to cart", cart_items_path(product_id: product.id) %>
   </div>
