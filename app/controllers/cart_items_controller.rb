@@ -2,6 +2,7 @@ class CartItemsController < ApplicationController
   before_action :set_cart
 
   def create
+    debugger
     product = Product.find(params[:product_id])
     @cart_item = @cart.cart_items.find_or_initialize_by(product_id: product.id)
     if @cart_item.new_record?
@@ -31,7 +32,7 @@ class CartItemsController < ApplicationController
       redirect_to cart_path
     end
   end
-  
+
   private
   def set_cart
     @cart = current_user.cart || current_user.create_cart
