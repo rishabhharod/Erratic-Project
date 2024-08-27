@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
 
   def create
     if current_user.seller.present?
-      debugger
       @product = current_user.seller.products.new(product_params)
       if @product.save
         attach_images(@product)

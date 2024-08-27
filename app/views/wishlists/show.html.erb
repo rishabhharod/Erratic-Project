@@ -1,0 +1,75 @@
+<style>
+body{
+  margin: 0px;
+  padding: 0px;
+}
+.form{
+    position: relative;
+}
+.form .fa-search{
+    position: absolute;
+    top:20px;
+    left: 20px;
+    color: #9ca3af;
+}
+.form span{
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+}
+.left-pan{
+    padding-left: 7px;
+}
+.left-pan i{
+  
+   padding-left: 10px;
+}
+.form-input{
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+.form-input:focus{
+    box-shadow: none;
+}
+.card-body a {
+    border:none;
+    background-color:#ffd814;
+    border-radius:30px;
+    text-decoration:none;
+    font-size:14px;
+    padding: 9px 26px;
+}
+</style>
+<center><h3><%=current_user.name%>'s Wishlist</h3></center>
+<div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
+<% total_price = 0 %>
+<% @wishlist_items.each do |item| %>
+<div class="card" style="width: 18rem;margin:15px">
+    <% if item.product.images.attached? %>
+        <%= link_to main_app.rails_blob_url(item.product.images.first), target: "_blank" do %>
+          <%= image_tag main_app.rails_blob_url(item.product.images.first), class: 'img-thumbnail' %>
+        <% end %>
+    <% else %>
+        <img src="..." class="card-img-top" alt="...">
+    <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%=item.product.name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price: <%=item.product.price %></li>
+  </ul>
+  <div class="card-body">
+    <%= button_to 'Add to cart',cart_items_path(product_id: item.product_id) %>
+  </div>
+  <div class="card-body">
+    <%= link_to "Remove product", wishlist_item_path(item),data:{
+        turbo_method: :delete,
+        turbo_confirm: "Are You Sure?"
+    } %>
+    </div>
+</div>
+<% end %>
+</div>

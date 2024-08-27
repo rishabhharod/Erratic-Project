@@ -2,7 +2,6 @@ class CartItemsController < ApplicationController
   before_action :set_cart
 
   def create
-    debugger
     product = Product.find(params[:product_id])
     @cart_item = @cart.cart_items.find_or_initialize_by(product_id: product.id)
     if @cart_item.new_record?
@@ -12,10 +11,10 @@ class CartItemsController < ApplicationController
     end
     if @cart_item.save
       flash[:notice] = 'Product added to the cart.'
-      redirect_to cart_path(@cart_item.cart_id)
+      redirect_to "/carts"
     else
       flash[:alert] = 'Could not add product to cart.'
-      redirect_to cart_path
+      render :carts_path
     end
   end
 
@@ -26,10 +25,10 @@ class CartItemsController < ApplicationController
     cart_item = @cart.cart_items.find(params[:id])
     if cart_item.destroy
       flash[:notice] = 'Product removed.'
-      redirect_to cart_path
+      redirect_to carts_path
     else
       flash[:alert] = 'product can not be remove.'
-      redirect_to cart_path
+      render :carts_path
     end
   end
 
