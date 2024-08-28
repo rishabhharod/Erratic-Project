@@ -15,3 +15,13 @@
     font-size:14px;
     padding: 9px 26px;
 }
+.nav-item button{
+    text-decoration: none;
+    background-color:#f8f9fa00;
+    border: none;
+}
+.nav-item button i{
+    height: 30px;
+    width: 30px;
+}
+
