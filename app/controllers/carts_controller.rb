@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
-  before_action :set_cart,only: [:index] 
+  before_action :set_cart,only: [:index]
+   
   def index
     @cart_items = @cart.cart_items
   end

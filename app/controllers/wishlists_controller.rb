@@ -1,5 +1,6 @@
 class WishlistsController < ApplicationController
   before_action :set_wishlist, only: [:show] 
+  
   def show
     @wishlist_items = @wishlist.wishlist_items
   end

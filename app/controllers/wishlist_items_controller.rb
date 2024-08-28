@@ -1,5 +1,6 @@
 class WishlistItemsController < ApplicationController
   before_action :set_wishlist
+  
   def create
     product = Product.find(params[:product_id])
     @wishlist_items = @wishlist.wishlist_items.find_or_initialize_by(product_id: product.id)
