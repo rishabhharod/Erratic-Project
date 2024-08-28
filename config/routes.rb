@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'wishlist_items/create'
-  get 'wishlist_items/destroy'
-  get 'wishlists/show'
   resources :carts, only: [:index]
   resources :cart_items, only: [:create,:update,:destroy]
   resources :wishlists, only: [:show]
