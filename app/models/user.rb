@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :products
   has_many :orders
   has_one :cart
+  has_one :wishlist
   has_one_attached :profile
   validates :name, presence: true
   validates :gender, presence: true

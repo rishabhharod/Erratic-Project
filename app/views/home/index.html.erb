@@ -31,7 +31,13 @@
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
     </li>
     <li class="nav-item ms-5">
-        <%= button_to "Edit Profile", edit_user_registration_path, method:  :get %> 
+    <%= button_to "Edit Profile", edit_user_registration_path, method:  :get %> 
+    </li>
+    <li class="nav-item ms-5">
+    <%= link_to image_tag('cart1.svg',alt: 'cart logo',title:'cart', style:'height:30px; width:30px'), carts_path(current_user) %>
+    </li>
+    <li class="nav-item ms-5">
+    <%= link_to image_tag('bag-heart.svg',alt: 'wishlist logo',title:'wishlist', style:'height:30px; width:30px'), wishlists_show_path(current_user) %>
     </li>
     <li class="nav-item ms-5">
       <% else %>
