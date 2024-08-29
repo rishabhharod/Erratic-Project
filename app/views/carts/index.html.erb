@@ -1,78 +1,169 @@
-<style>
-body{
-  margin: 0px;
-  padding: 0px;
-}
-.form{
-    position: relative;
-}
-.form .fa-search{
-    position: absolute;
-    top:20px;
-    left: 20px;
-    color: #9ca3af;
-}
-.form span{
-    position: absolute;
-    right: 17px;
-    top: 13px;
-    padding: 2px;
-    border-left: 1px solid #d1d5db;
-}
-.left-pan{
-    padding-left: 7px;
-}
-.left-pan i{
-  
-   padding-left: 10px;
-}
-.form-input{
-    height: 55px;
-    text-indent: 33px;
-    border-radius: 10px;
-}
-.form-input:focus{
-    box-shadow: none;
-}
-.card-body a {
-    border:none;
-    background-color:#ffd814;
-    border-radius:30px;
-    text-decoration:none;
-    font-size:14px;
-    padding: 9px 26px;
-}
-</style>
-<center><h3><%=current_user.name%>'s Cart</h3></center>
-<div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
-<% total_price = 0 %>
-<% @cart_items.each do |item| %>
-<div class="card" style="width: 18rem;margin:15px">
-    <% if item.product.images.attached? %>
-        <%= link_to main_app.rails_blob_url(item.product.images.first), target: "_blank" do %>
-          <%= image_tag main_app.rails_blob_url(item.product.images.first), class: 'img-thumbnail' %>
-        <% end %>
-    <% else %>
-        <img src="..." class="card-img-top" alt="...">
-    <% end %>
-  <div class="card-body">
-    <h5 class="card-title"><%=item.product.name %></h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Quantity: <%=item.quantity %></li>
-    <li class="list-group-item">Price: <%=item.product.price %></li>
-    <% total_price += (item.product.price*item.quantity) %>
-  </ul>
-  <div class="card-body">
-    <%= link_to "Remove product", cart_item_path(item),data:{
-        turbo_method: :delete,
-        turbo_confirm: "Are You Sure?"
-    } %>
+<% stylesheet_link_tag 'cart' %>
+<%= render partial: "home/navbar" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="text-center fs-5 fw-light my-4 ">
+    <h5>Cart Details</h5>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8">
+            <% @cart_items.each do |item| %>
+            <div class="card border shadow-none">
+                <div class="card-body">
+                    <div class="d-flex align-items-start border-bottom pb-3">
+                        <div class="me-4">   
+                            <% if item.product.images.attached? %>
+                                <%= link_to main_app.rails_blob_url(item.product.images.first), target: "_blank" do %>
+                                    <%= image_tag main_app.rails_blob_url(item.product.images.first), class: 'avatar-lg rounded' %>
+                                <% end %>
+                            <% end%>
+                        </div>
+                        <div class="flex-grow-1 align-self-center overflow-hidden">
+                            <div>
+                                <h5 class="text-truncate font-size-18"><%=item.product.name%></h5>
+                                <p class="text-muted mb-0">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star-half text-warning"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 ms-2">
+                            <ul class="list-inline mb-0 font-size-16">
+                                <li class="list-inline-item">
+                                    <%= button_to cart_item_path(item),class:"text-muted px-1",data:{
+                                        turbo_method: :delete,
+                                        turbo_confirm: "Are You Sure?"
+                                        } do%>
+                                        <i class="mdi mdi-trash-can-outline"></i>
+                                    <%end%>
+                                </li>
+                                <li class="list-inline-item">
+                                    <%= button_to wishlist_items_path(product_id: item.product.id),class:"text-muted px-1" do %>
+                                        <i class="mdi mdi-heart-outline"></i>
+                                    <% end %>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Price</p>
+                                    <h5 class="mb-0 mt-2">Rs. <%=item.product.price%> <span class="text-muted me-2"><del class="font-size-16 fw-normal"> Rs.500</del></span></h5>
+                                </div>
+                                </div>
+                            <div class="col-md-5">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Quantity</p>
+                                    <div class="d-inline-flex">
+                                        <p class="w-xxl"><%= item.quantity%></p>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Total</p>
+                                    <h5><%=(item.product.price * item.quantity) %></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                <!-- end card -->
+                <% end %>
+
+            
+            <div class="row my-4">
+                <div class="col-sm-6">
+                <%= link_to root_path, class:"btn btn-link text-muted" do %>
+                    <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping 
+                <%end%>
+                </div> <!-- end col -->
+                <div class="col-sm-6">
+                <div class="text-sm-end mt-2 mt-sm-0">
+                <a href="ecommerce-checkout.html" class="btn btn-success">
+                            <i class="mdi mdi-cart-outline me-1"></i> Checkout </a>
+                    </div>
+                    </div> <!-- end col -->
+            </div> <!-- end row-->
+            </div>
+
+        <div class="col-xl-4">
+            <div class="mt-5 mt-lg-0">
+                <div class="card border shadow-none">
+                    <div class="card-header bg-transparent border-bottom py-3 px-4">
+                    <h5 class="font-size-16 mb-0">Order Summary <span class="float-end">#MN0124</span></h5>
+                    </div>
+                    <div class="card-body p-4 pt-2">
+                    
+                    <div class="table-responsive">
+                    <table class="table mb-0">
+                    <tbody>
+                                    <tr>
+                                    <td>Sub Total :</td>
+                                        <td class="text-end">$ 780</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount : </td>
+                                        <td class="text-end">- $ 78</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Charge :</td>
+                                        <td class="text-end">$ 25</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estimated Tax : </td>
+                                        <td class="text-end">$ 18.20</td>
+                                    </tr>
+                                    <tr class="bg-light">
+                                        <th>Total :</th>
+                                        <td class="text-end">
+                                            <span class="fw-bold">
+                                                $ 745.2
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end table-responsive -->
+                    </div>
+                    </div>
+            </div>
+        </div>
     </div>
+    <!-- end row -->
+    
 </div>
-<% end %>
-</div>
-<div>
-<h5>Bill Invoice</h5>
-<p>total Amount to pay: <%=total_price%></p>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

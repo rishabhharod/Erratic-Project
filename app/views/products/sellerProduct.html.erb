@@ -1,19 +1,5 @@
-<head>
-<style>
-table, td, th {
-  border: 1px solid;
-}
-
-table {
-  width: 90%;
-  border-collapse: collapse;
-}
-td,th{
-  text-align: center;
-}
-</style>
-</head>
-<center><h2><%= current_user.name %>'s Products</h2></center>
+<% stylesheet_link_tag 'sellerProduct' %>
+<%= render partial: "home/navbar" %>
 <div>
 <table>
   <tr>
