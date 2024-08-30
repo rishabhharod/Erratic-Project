@@ -3,9 +3,9 @@ class WishlistItemsController < ApplicationController
   
   def create
     product = Product.find(params[:product_id])
-    @wishlist_items = @wishlist.wishlist_items.find_or_initialize_by(product_id: product.id)
-    if @wishlist_items.new_record?
-      @wishlist_items.save
+    wishlist_items = @wishlist.wishlist_items.find_or_initialize_by(product_id: product.id)
+    if wishlist_items.new_record?
+      wishlist_items.save
       flash[:notice] = 'Product wishlisted'
       redirect_to wishlist_path
     else
@@ -15,8 +15,8 @@ class WishlistItemsController < ApplicationController
   end
 
   def destroy
-    @wishlist_item = @wishlist.wishlist_items.find(params[:id])
-    if @wishlist_item.destroy
+    wishlist_item = @wishlist.wishlist_items.find(params[:id])
+    if wishlist_item.destroy
       flash[:notice] = 'Product removed'
       redirect_to wishlist_path
     else
