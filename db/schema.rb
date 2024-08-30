@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_29_071525) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_30_100702) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,7 +48,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_071525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_id", null: false
+    t.integer "user_id", null: false
     t.index ["order_id"], name: "index_addresses_on_order_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -104,6 +106,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_071525) do
     t.string "tracking_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "address_id"
+    t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -188,6 +192,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_071525) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "orders"
+  add_foreign_key "addresses", "users"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
@@ -196,6 +201,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_071525) do
   add_foreign_key "invoices", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "sellers"
   add_foreign_key "reviews", "orders"
