@@ -7,7 +7,7 @@ class WishlistItemsController < ApplicationController
     if @wishlist_items.new_record?
       @wishlist_items.save
       flash[:notice] = 'Product wishlisted'
-      redirect_to wishlists_show_path
+      redirect_to wishlist_path
     else
       flash[:alert] = 'Already wishlisted'
       redirect_to product_path(product)

@@ -35,11 +35,11 @@ body{
 }
 .card-body a {
     border:none;
-    background-color:none;
+    background-color:#ffd814;
     border-radius:30px;
     text-decoration:none;
     font-size:14px;
-    padding: 9px 26px;
+    padding: 12px 21px;
 }
 body{
     margin-top:20px;
@@ -61,8 +61,8 @@ body{
     white-space: nowrap;
 }
 
-a {
-    text-decoration: none!important;
+.a-wish {
+    background-color: none!important;
 }
 
 .w-xl {
@@ -91,3 +91,40 @@ a {
     border: 1px solid #eff0f2;
     border-radius: 1rem;
 }
+
+.order-card{
+    height: auto;
+}
+.order-button{
+    background-color: #198754!important;
+    border-radius: 4px!important;
+    border: none;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+.a-wish button{
+    background-color: #ffffff00!important;    
+}
+.order-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .order-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .order-button:hover span {
+    padding-right: 25px;
+  }
+  
+  .order-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
