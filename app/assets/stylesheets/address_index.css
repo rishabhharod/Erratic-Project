@@ -1,0 +1,27 @@
+.home-btn{
+    background-color: none;
+    border: 1px solid #198754;;
+    border-radius: 20px;
+    font-size: 11px;
+    color: #198754;
+   
+}
+.fa-dot-circle{
+color: #198754;
+}
+.name{
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 15px;
+}
+.full-address
+{
+    font-size: 15px;
+    line-height: 1.26;
+}
+.contact{
+    font-size: 15px;
+}
+.delivery{
+    font-size: 15px;
+}

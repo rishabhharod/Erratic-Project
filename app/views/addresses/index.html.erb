@@ -1,4 +1,5 @@
 <% stylesheet_link_tag 'cart' %>
+<% stylesheet_link_tag 'address_index' %>
 <%= render partial: "home/navbar" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -10,72 +11,79 @@
 		<div class="container">
 			<div class="card border shadow-none">
 				<div class="row">
-					<div class="">
-						<% if current_user.addresses.present? %>
-							<div>
-
+					<% if @address.present? %>
+					<div class="cart-body p-4">
+						<div class="address-body ms-4">
+              <i class="far fa-dot-circle fa-lg" >
+              </i><span class="ms-2 name"><%=current_user.name.capitalize %></span>  <div class="btn home-btn ms-1 fw-bolder"><%=@address.address_type.capitalize%></div> 
+							<div class="fw-light full-address mt-3 ps-4"><%=@address.full_address%>, <%=@address.city%></br><%=@address.state.titleize%> - <%=@address.pincode%></div>
+              <div class="contact fw-light mt-3 ps-4">Mobile: </span><span class="fw-bold"><%= current_user.contact%></span></div>
+              <div class="delivery fw-light mt-4 ps-4">• Pay on Delivery available</div>
+						</div>
+						<!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Remove
+						</button>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Edit
+						</button>
+						<!-- Modal -->
+						<%= render partial:"modal" %>
+					</div>	
+					<% else %>
+						<div class="row g-3 p-2">
+							<div class="col-md-6">
+								<label for="inputEmail4" class="form-label">Email</label>
+								<input type="email" class="form-control" id="inputEmail4">
 							</div>
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-								Edit form1
-							</button>
-							<!-- Modal -->
-							<%= render partial:"modal" %>	
-						<% else %>
-							<div class="row g-3 p-2">
-								<div class="col-md-6">
-									<label for="inputEmail4" class="form-label">Email</label>
-									<input type="email" class="form-control" id="inputEmail4">
-								</div>
-								<div class="col-md-6">
-									<label for="inputPassword4" class="form-label">Password</label>
-									<input type="password" class="form-control" id="inputPassword4">
-								</div>
-								<div class="col-12">
-									<label for="inputAddress" class="form-label">Address</label>
-									<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-								</div>
-								<div class="col-12">
-									<label for="inputAddress2" class="form-label">Address 2</label>
-									<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-								</div>
-								<div class="col-md-6">
-									<label for="inputCity" class="form-label">City</label>
-									<input type="text" class="form-control" id="inputCity">
-								</div>
-								<div class="col-md-4">
-									<label for="inputState" class="form-label">State</label>
-									<select id="inputState" class="form-select">
-										<option selected>Choose...</option>
-										<option>...</option>
-									</select>
-								</div>
-								<div class="col-md-2">
-									<label for="inputZip" class="form-label">Zip</label>
-									<input type="text" class="form-control" id="inputZip">
-								</div>
-								<div class="col-12">
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" id="gridCheck">
-										<label class="form-check-label" for="gridCheck">
-											Check me out
-										</label>
-									</div>
-								</div>
-								<div class="col-2">
-									<button type="submit" class="btn btn-primary">Sign in</button>
-								</div>
-								<div class="col-2">
-									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-										Edit  
-									</button>
-									<!-- Modal -->
-									<%= render partial: 'modal'%>
+							<div class="col-md-6">
+								<label for="inputPassword4" class="form-label">Password</label>
+								<input type="password" class="form-control" id="inputPassword4">
+							</div>
+							<div class="col-12">
+								<label for="inputAddress" class="form-label">Address</label>
+								<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+							</div>
+							<div class="col-12">
+								<label for="inputAddress2" class="form-label">Address 2</label>
+								<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+							</div>
+							<div class="col-md-6">
+								<label for="inputCity" class="form-label">City</label>
+								<input type="text" class="form-control" id="inputCity">
+							</div>
+							<div class="col-md-4">
+								<label for="inputState" class="form-label">State</label>
+								<select id="inputState" class="form-select">
+									<option selected>Choose...</option>
+									<option>...</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<label for="inputZip" class="form-label">Zip</label>
+								<input type="text" class="form-control" id="inputZip">
+							</div>
+							<div class="col-12">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="gridCheck">
+									<label class="form-check-label" for="gridCheck">
+										Check me out
+									</label>
 								</div>
 							</div>
-						<% end %>
-					</div>
+							<div class="col-2">
+								<button type="submit" class="btn btn-primary">Reset</button>
+							</div>
+							<div class="col-2">
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+									Edit  
+								</button>
+								<!-- Modal -->
+								<%= render partial: 'modal'%>
+							</div>
+						</div>
+					<% end %>
 				</div>
 			</div>			
 		</div>
@@ -90,7 +98,7 @@
 						</div>
 						<div class="card-body p-4 pt-2 order-card">
 								<div class="table-responsive">
-									<%= render partial: 'carts/order_summery' %>
+									<%= render partial: "carts/order_summery" %>
 									<button type="button" class="btn btn-primary w-100 mt-3 order-button"><span>Place Order</span></button>
 								</div>
 								<!-- end table-responsive -->
