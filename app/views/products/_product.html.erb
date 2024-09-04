@@ -18,9 +18,9 @@
       <% else %>
           <img src="..." class="card-img-top" alt="...">
       <% end %>
-        <div class="card-body">
+        <div class="card-body w-100">
           <h5 class="card-title"><%=product.name %></h5>
-          <p class="card-text"><%=product.description%></p>
+          <p class="card-text"><%=product.description.truncate(45, omission: '...more')%></p>
         </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Price: <%=product.price %></li>

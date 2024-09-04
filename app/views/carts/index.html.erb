@@ -54,6 +54,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mt-3">
+                            
                                     <p class="text-muted mb-2">Price</p>
                                     <h5 class="mb-0 mt-2">Rs. <%=item.product.price%> <span class="text-muted me-2"><del class="font-size-16 fw-normal"> Rs.500</del></span></h5>
                                 </div>
@@ -64,13 +65,12 @@
                                     <div class="d-inline-flex">
                                         <p class="w-xxl"><%= item.quantity%></p>
                                     </div>
-                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mt-3">
                                     <p class="text-muted mb-2">Total</p>
-                                    <% @sub_total += (item.product.price * item.quantity) %>
-                                    <h5><%=@sub_total%></h5>
+                                    <h5><%=item.product.price * item.quantity%></h5>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,12 @@
                 <div class="card-body p-4 pt-2 order-card">
                     <div class="table-responsive">
                         <%= render partial: 'order_summery' %>
-                        <button onclick="window.location.href='<%= addresses_path %>'" type="button" class="btn btn-primary w-100 mt-3 order-button"><span>Place Order</span>
+                        <!-- <button onclick="window.location.href='<%= addresses_path(locals: {sub_total: @sub_total,tax: @tax,shipping_charge: @shipping_charge}) %>'" type="button" class="btn btn-primary w-100 mt-3 order-button"><span>Place Order</span> -->
+                        <div class="btn mt-2 w-100 text-white order-button">
+                            <span>
+                                <%= link_to 'Place order',addresses_path(sub_total: @sub_total,tax: @tax,shipping_charge: @shipping_charge) ,class:'text-white p-0', style:"background-color: #198754;"%>
+                            </span>
+                        </div>
                     </div>
                     <!-- end table-responsive -->
                 </div>
