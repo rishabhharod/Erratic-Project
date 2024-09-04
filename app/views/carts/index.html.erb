@@ -103,8 +103,7 @@
                 <div class="card-body p-4 pt-2 order-card">
                     <div class="table-responsive">
                         <%= render partial: 'order_summery' %>
-                        <!-- <button onclick="window.location.href='<%= addresses_path(locals: {sub_total: @sub_total,tax: @tax,shipping_charge: @shipping_charge}) %>'" type="button" class="btn btn-primary w-100 mt-3 order-button"><span>Place Order</span> -->
-                        <div class="btn mt-2 w-100 text-white order-button">
+                        <div class="btn w-100 text-white order-button">
                             <span>
                                 <%= link_to 'Place order',addresses_path(sub_total: @sub_total,tax: @tax,shipping_charge: @shipping_charge) ,class:'text-white p-0', style:"background-color: #198754;"%>
                             </span>

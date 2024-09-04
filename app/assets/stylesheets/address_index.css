@@ -25,3 +25,12 @@ color: #198754;
 .delivery{
     font-size: 15px;
 }
+.btn-add-edit{
+    font-size: 14px;
+}
+.fa-trash
+{
+    color: #fd5c17;
+    margin-left: 520px;
+    cursor: pointer;
+}

@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td>Shipping Charge :</td>
-            <td class="text-end"> <p class="text-muted mb-2"><%= @sub_total >= 500 ? 'Free shipping' && @shipping_charge = 0 : '₹ 50' && @shipping_charge = 50%></p></td>
+            <td class="text-end"> <p class="text-muted mb-2"><%= @sub_total >= 500 ? 'Free shipping' : '₹ 50'%></p></td>
         </tr>
         <tr>
             <td>Estimated Tax : </td>

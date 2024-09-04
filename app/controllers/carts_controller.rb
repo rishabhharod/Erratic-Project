@@ -6,7 +6,5 @@ class CartsController < ApplicationController
   def index
     @order_summery = set_order_summery
   end
-
-
   
 end
