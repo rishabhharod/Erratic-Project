@@ -14,8 +14,8 @@ class AddressesController < ApplicationController
   end
   
   def create
-    @address = current_user.addresses.new(address_params)
-    if @address.save
+    address = current_user.addresses.new(address_params)
+    if address.save!
       flash[:notice] = "New address added"
       redirect_to addresses_path
     else
@@ -30,21 +30,21 @@ class AddressesController < ApplicationController
   end 
 
   def update
-    @address = Address.find(params[:id])
-    if @address.update(address_params)
+    address = Address.find(params[:id])
+    if address.update(address_params)
       flash[:notice] = 'Address successfully edited'
       redirect_to addresses_path
     else
       flash[:alert] = 'Error occur during edit'
-      redirect_to addresses_path
+      render :addresses_path
     end
   end
 
   def destroy
-    @address = Address.find(params[:id])
-    if @address.destroy
+    address = Address.find(params[:id])
+    if address.destroy
       flash[:notice] = 'Address removed successfully.'
-      render :index 
+      redirect_to addresses_path
     else
       flash[:alert] = 'Address can not be removed.'
       render :index
@@ -58,7 +58,7 @@ class AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:full_address,:state,:city,:pincode,:landmark,:user_id,:address_type)
+    params.require(:address).permit(:full_address,:state,:city,:pincode,:landmark,:user_id,:address_type,:order_id)
   end
 
 end

@@ -3,6 +3,7 @@
   <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg w-50">
       <%= form_with model: @address  do |f| %> 
+        <%= f.hidden_field :order_id, value: '1' %>
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>

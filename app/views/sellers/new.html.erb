@@ -1,4 +1,4 @@
-<%= render partial: "home/navbar" %>
+
 <h6> seller Details </h6>
 <%= form_for @seller , url: "/sellers" do |f| %>
         <%= f.hidden_field :user_id, value: current_user.id %>
