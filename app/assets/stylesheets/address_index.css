@@ -34,3 +34,12 @@ color: #198754;
     margin-left: 520px;
     cursor: pointer;
 }
+.address-radio{
+    height: 22px;
+    width: 22px;
+}
+.delete-button
+{
+    border: none;
+    background-color: none;
+}

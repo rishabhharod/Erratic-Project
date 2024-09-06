@@ -1,5 +1,4 @@
 <% stylesheet_link_tag 'cart' %>
-
 <div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
 <% total_price = 0 %>
 <% @wishlist_items.each do |item| %>
@@ -21,11 +20,8 @@
     <%= button_to 'Add to cart',cart_items_path(product_id: item.product_id) %>
   </div>
   <div class="card-body">
-    <%= link_to "Remove product", wishlist_item_path(item),data:{
-        turbo_method: :delete,
-        turbo_confirm: "Are You Sure?"
-    } %>
-    </div>
+    <%= link_to "Remove product", wishlist_item_path(item),method: :delete%>
+  </div>
 </div>
 <% end %>
 </div>

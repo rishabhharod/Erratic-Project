@@ -4,6 +4,7 @@
     <div class="modal-dialog modal-lg w-50">
       <%= form_with model: @address  do |f| %> 
         <%= f.hidden_field :order_id, value: '1' %>
+        <%= f.hidden_field :is_checked, value: false %>
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -38,8 +39,8 @@
           </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <%= f.submit 'Save changes', class:'btn btn-primary'%>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= f.submit 'Save changes', class:'btn btn-primary'%>
         </div>
       </div>
       <%end%>
