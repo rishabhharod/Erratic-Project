@@ -12,14 +12,14 @@ class ProductsController < ApplicationController
       @product = current_user.seller.products.new(product_params)
       if @product.save
         attach_images(@product)
-        flash[:notice] = "product created successfully."
+        flash[:notice] = 'Product created successfully.'
         redirect_to sellerProduct_path
       else
-        flash.now[:alert] = "product can't be added.."
+        flash.now[:alert] = 'Product can not be add'
         render :new
       end
     else
-      flash[:notice] = "enter the seller details."
+      flash[:notice] = 'Enter the seller details.'
       redirect_to new_sellers_path
     end
   end
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update!(product_params)
       attach_images(@product)
-      flash[:notice] = "product updated"
+      flash[:notice] = 'Product updated.'
       redirect_to sellerProduct_path
     else
       render :edit, status: :unprocessable_entity
@@ -50,15 +50,14 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     if @product.destroy
-        flash[:notice] = "product has been deleted."
+        flash[:notice] = 'Product has been deleted.'
         redirect_to sellerProduct_path
     else
-        flash.now[:alert] = "product id can't be found."
+        flash.now[:alert] = 'Product id can not be found.'
         render sellerProduct_path
     end
   end
 
-  
   private
   
   def product_params
@@ -69,5 +68,4 @@ class ProductsController < ApplicationController
           product.images.attach(params[:product][:images])
      end
   end
-
 end

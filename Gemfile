@@ -66,5 +66,6 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'devise'
+gem "jquery-rails", "4.6.0"
 gem 'cancancan'
 gem 'byebug'

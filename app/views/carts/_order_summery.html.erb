@@ -1,29 +1,29 @@
 <table class="table mb-0">
-    <tbody>
-        <tr>
-            <td>Sub Total :</td>
-            <td class="text-end">₹ <%=@sub_total%></td>
-        </tr>
-        <tr>
-            <td>Discount : </td>
-            <td class="text-end">- 0</td>
-        </tr>
-        <tr>
-            <td>Shipping Charge :</td>
-            <td class="text-end"> <p class="text-muted mb-2"><%= @sub_total >= 500 ? 'Free shipping' && @shipping_charge = 0 : '₹ 50' && @shipping_charge = 50%></p></td>
-        </tr>
-        <tr>
-            <td>Estimated Tax : </td>
-            <% @tax = ((@sub_total * 18) / 100)%>
-            <td class="text-end">₹ <%=@tax%></td>
-        </tr>
-        <tr class="bg-light">
-            <th>Total :</th>
-            <td class="text-end">
-                <span class="fw-bold">
-                    ₹ <%=(@sub_total+@tax+@shipping_charge)%>
-                </span>
-            </td>
-        </tr>
-    </tbody>
+  <tbody>
+    <tr>
+      <td>Sub Total :</td>
+      <td class="text-end">₹ <%=@sub_total%></td>
+    </tr>
+    <tr>
+      <td>Discount : </td>
+      <td class="text-end">- 0</td>
+    </tr>
+    <tr>
+      <td>Shipping Charge :</td>
+      <td class="text-end"> <p class="text-muted mb-2"><%= @sub_total >= 500 ? 'Free shipping' : '₹ 50'%></p></td>
+    </tr>
+    <tr>
+      <td>Estimated Tax : </td>
+      <% @tax = ((@sub_total * 18) / 100)%>
+      <td class="text-end">₹ <%=@tax%></td>
+    </tr>
+    <tr class="bg-light">
+      <th>Total :</th>
+      <td class="text-end">
+        <span class="fw-bold">
+          ₹ <%=(@sub_total+@tax+@shipping_charge)%>
+        </span>
+      </td>
+    </tr>
+  </tbody>
 </table>

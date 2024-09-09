@@ -18,12 +18,9 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def update
-  end
-
   def destroy
-    cart_item = @cart.cart_items.find(params[:id])
-    if cart_item.destroy
+    @cart_item = @cart.cart_items.find(params[:id])
+    if @cart_item.destroy
       flash[:notice] = 'Product removed.'
       redirect_to carts_path
     else
@@ -33,6 +30,7 @@ class CartItemsController < ApplicationController
   end
 
   private
+
   def set_cart
     @cart = current_user.cart || current_user.create_cart
   end

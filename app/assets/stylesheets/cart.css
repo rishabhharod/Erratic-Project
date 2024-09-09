@@ -101,6 +101,8 @@ body{
     border: none;
     transition: all 0.5s;
     cursor: pointer;
+    font-family: sans-serif;
+    margin-top: 12px;
 }
 .a-wish button{
     background-color: #ffffff00!important;    

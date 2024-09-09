@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   get "sellerProduct", to: 'products#sellerProduct'
-  resources :addresses, only: [:index,:create,:update]
+  resources :addresses do
+    member do
+      post :update_selected
+    end
+  end
   resources :carts, only: [:index]
   resources :cart_items, only: [:create,:update,:destroy]
   resources :wishlists, only: [:show]
