@@ -1,26 +1,34 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container shadow-lg p-3 mb-5 bg-body rounded w-50">
+  <section class="container">
+    <header class="text-center mb-5">
+      <h3>Log in</h3>
+    </header>
+    <div class="row g-3">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-floating mb-3">
+          <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"email", autofocus: true, autocomplete: "email" %>
+          <%= f.label :email, for:"floatingInput" %><br />
+        </div>
+        <div class="form-floating mb-3">
+          <%= f.password_field :password, class:"form-control", id:"floatingInput", placeholder:"password", autocomplete: "current-password" %>
+          <%= f.label :password, for:"floatingInput" %><br />
+        </div>
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me, class:"form-check-input"%>
+            <%= f.label :remember_me, class:"form-check-label ms-2 fw-light"%>
+          </div>
+        <% end %>
+        <div class=" d-flex mt-4">
+          <%= f.submit "Log in", class:"btn btn-outline-success col-5 ms-4" %>
+          <%= render "devise/shared/links" %>
+        </div>
+        <div class="mt-3">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name), class:"fw-bolder" %><br />
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  </section>
+</div>

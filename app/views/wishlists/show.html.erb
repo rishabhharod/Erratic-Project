@@ -1,27 +1,33 @@
 <% stylesheet_link_tag 'cart' %>
 <div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
-<% total_price = 0 %>
-<% @wishlist_items.each do |item| %>
-<div class="card" style="width: 18rem;margin:15px">
-    <% if item.product.images.attached? %>
-        <%= link_to main_app.rails_blob_url(item.product.images.first), target: "_blank" do %>
-          <%= image_tag main_app.rails_blob_url(item.product.images.first), class: 'img-thumbnail' %>
+  <% total_price = 0 %>
+  <% if @wishlist_items.empty? %>
+    <div class="align-center">
+      <%= image_tag ('empty_bag'), style:"radius:50%;heigth:500px;width:500px"%>
+    </div>
+  <%else%>
+    <% @wishlist_items.each do |item| %>
+      <div class="card" style="width: 18rem;margin:15px">
+        <% if item.product.images.attached? %>
+          <%= link_to main_app.rails_blob_url(item.product.images.first), target: "_blank" do %>
+            <%= image_tag main_app.rails_blob_url(item.product.images.first), class: 'img-thumbnail' %>
+          <% end %>
+        <% else %>
+          <img src="..." class="card-img-top" alt="...">
         <% end %>
-    <% else %>
-        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%=item.product.name %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Price: <%=item.product.price %></li>
+        </ul>
+        <div class="card-body">
+          <%= button_to 'Add to cart',cart_items_path(product_id: item.product_id) %>
+        </div>
+        <div class="card-body">
+          <%= link_to "Remove product", wishlist_item_path(item),method: :delete%>
+        </div>
+      </div>
     <% end %>
-  <div class="card-body">
-    <h5 class="card-title"><%=item.product.name %></h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Price: <%=item.product.price %></li>
-  </ul>
-  <div class="card-body">
-    <%= button_to 'Add to cart',cart_items_path(product_id: item.product_id) %>
-  </div>
-  <div class="card-body">
-    <%= link_to "Remove product", wishlist_item_path(item),method: :delete%>
-  </div>
-</div>
-<% end %>
+  <%end%>
 </div>
