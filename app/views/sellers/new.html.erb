@@ -1,14 +1,29 @@
-
-<h6> seller Details </h6>
-<%= form_for @seller , url: "/sellers" do |f| %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-         <%= f.label :company_email %>
-         <%= f.email_field :company_email, autofocus: true, autocomplete: "company_email" %><br /><br />
-         <%= f.label :GSTIN_number %>
-         <%= f.text_field :GSTIN_number, autofocus: true, autocomplete: "GSTIN_number" %><br /><br />
-         <%= f.label :contact %>
-         <%= f.number_field :contact, autofocus: true, autocomplete: "contact" %><br /><br />
-         <%= f.label :category %>
-         <%= f.text_field :category, autofocus: true, autocomplete: "category" %><br /><br />
-         <%= f.submit "Submit Details" %>
-<% end %>
+<header class="text-center">
+  <h6> seller Details </h6>
+</header>
+<section class="container shadow-lg p-3 mb-5 bg-body rounded w-50">
+  <div class="p-5">
+    <%= form_for @seller , url: "/sellers" do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <div class="form-floating">
+        <%= f.email_field :company_email,class:"form-control", id:"floatingInput", placeholder:"email", required:"true", autofocus: true %><br /><br />
+        <%= f.label :company_email %>
+      </div>
+      <div class="form-floating">
+        <%= f.text_field :GSTIN_number,class:"form-control", id:"floatingInput", placeholder:"number", required:"true", autofocus: true %><br /><br />
+        <%= f.label :GSTIN_number %>
+      </div>
+      <div class="form-floating">
+        <%= f.number_field :contact, class:"form-control", id:"floatingInput", placeholder:"contact", required:"true", autofocus: true %><br /><br />
+        <%= f.label :contact %>
+      </div>
+      <div class="form-floating">
+        <%= f.text_field :category, class:"form-control", id:"floatingInput", placeholder:"category", required:"true", autofocus: true %><br /><br />
+        <%= f.label :category %>
+      </div>
+      <div class="row">
+        <%= f.submit "Submit Details", class:"btn btn-outline-success w-50 mx-auto"%>
+      </div>
+    <% end %>
+  </div>
+</section>

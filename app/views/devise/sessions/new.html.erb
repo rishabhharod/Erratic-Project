@@ -1,21 +1,21 @@
 <div class="container shadow-lg p-3 mb-5 bg-body rounded w-50">
+  <header class="text-center mb-5">
+    <h3>Log in</h3>
+  </header>
   <section class="container">
-    <header class="text-center mb-5">
-      <h3>Log in</h3>
-    </header>
     <div class="row g-3">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-floating mb-3">
-          <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"email", autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"email", required:"true", autofocus: true, autocomplete: "email" %>
           <%= f.label :email, for:"floatingInput" %><br />
         </div>
         <div class="form-floating mb-3">
-          <%= f.password_field :password, class:"form-control", id:"floatingInput", placeholder:"password", autocomplete: "current-password" %>
+          <%= f.password_field :password, class:"form-control", id:"floatingInput", placeholder:"password", required:"true",  autocomplete: "current-password" %>
           <%= f.label :password, for:"floatingInput" %><br />
         </div>
         <% if devise_mapping.rememberable? %>
           <div class="field">
-            <%= f.check_box :remember_me, class:"form-check-input"%>
+            <%= f.check_box :remember_me, required:"true", class:"form-check-input"%>
             <%= f.label :remember_me, class:"form-check-label ms-2 fw-light"%>
           </div>
         <% end %>
