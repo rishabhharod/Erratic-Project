@@ -10,6 +10,7 @@
         <th scope="col">Name</th>             
         <th scope="col">Description</th>
         <th scope="col">Price</th>
+        <th scope="col">Discount</th>
         <th scope="col">Stock</th>
         <th scope="col">Seller ID</th>
         <th scope="col">Edit</th>
@@ -22,7 +23,8 @@
         <td scope="row"><%=product.id%></td>
         <td><%=product.name%></td>        
         <td><%=product.description %></td>   
-        <td><%=product.price%></td>      
+        <td><%=product.price%></td>
+        <td><%=product.discount%></td>      
         <td><%=product.stock%></td>
         <td><%=product.seller_id%></td>
         <td><%=link_to edit_product_path(product),title:'Edit' do %>
