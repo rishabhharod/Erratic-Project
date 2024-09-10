@@ -130,3 +130,14 @@ body{
     opacity: 1;
     right: 0;
   }
+.empty-bag-image{
+    width: 70vh;
+    border-radius: 50%;
+}
+.wishlist-container{
+    background-color: #f6f6f600;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 70%;
+}

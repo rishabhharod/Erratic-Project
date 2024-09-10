@@ -1,9 +1,12 @@
 <% stylesheet_link_tag 'cart' %>
-<div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
+<header class="text-center">
+  <h5 class="fw-light">wishlist <%= @wishlist_items.empty? ? 'is empty' : 'items'%> </h5>
+</header>
+<div class="wishlist-container"">
   <% total_price = 0 %>
   <% if @wishlist_items.empty? %>
-    <div class="align-center">
-      <%= image_tag ('empty_bag'), style:"radius:50%;heigth:500px;width:500px"%>
+    <div class="rounded mx-auto d-block">
+      <%= image_tag ('empty_bag'), class:"empty-bag-image shadow-lg p-3 mb-5 bg-body"%>
     </div>
   <%else%>
     <% @wishlist_items.each do |item| %>
