@@ -9,9 +9,9 @@
     </div>
   </div>            
 </div>
-<div style="display:flex;flex-wrap: wrap;;width:100%;height:70%">
+<div style="display:flex;flex-wrap:wrap;;width:100%;height:70%">
   <% @products.each do |product| %>
-    <div class="card" style="width: 18rem;margin:15px">
+    <div class="card" >
       <%= link_to product_path(product) do %>
       <% if product.images.attached? %>
           <%= image_tag main_app.rails_blob_url(product.images.first), class: 'img-thumbnail' %>
@@ -23,7 +23,14 @@
           <p class="card-text"><%=product.description.truncate(45, omission: '...more')%></p>
         </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Price: <%=product.price %></li>
+        <li class="list-group-item d-flex">Price: 
+          <% if product.discount.nil? %>
+            <span><sup>₹</sup></span><h5><%=product.price%></h5>
+          <% else %>
+            <span><sup>₹</sup></span><h5><%=set_discount(product)%></h5><del class="del-text"><span><sup>₹</sup><%=product.price%></del>
+            <span class="ms-5 font-size-20 fw-light text-danger">-<%=product.discount%>%</span>
+          <% end %>
+        </li>
         <li class="list-group-item">Stock: <%=product.stock %></li>
       </ul>
       <% end %>

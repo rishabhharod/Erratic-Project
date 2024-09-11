@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
   private
   
   def product_params
-      params.require(:product).permit(:name,:description,:price,:stock,:product_type,images:[])
+      params.require(:product).permit(:name,:description,:price,:stock,:product_type,:discount,images:[])
   end
   def attach_images(product)
       if params[:product][:images].present?

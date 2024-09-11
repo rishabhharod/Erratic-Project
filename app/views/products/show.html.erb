@@ -43,9 +43,13 @@
                 <span class="text-success ms-2">Few are left</span>
             <% end %>
           </div>
-          <div class="mb-3">
-            <span class="h5">Rs.<%= @product.price %></span>
-            <span class="text-muted">/per box</span>
+          <div class="d-flex mb-3">
+            <% if @product.discount.nil? %>
+              <span><sup>₹</sup></span><h5><%=@product.price%></h5><span class="text-muted">/per box</span>
+            <% else %>
+              <span><sup>₹</sup></span><h5><%=set_discount(@product)%></h5><span class="text-muted">/per box</span><del class="del-text"><span><sup>₹</sup><%=@product.price%></del>
+              <span class="ms-5 font-size-20 fw-light text-danger">-<%=@product.discount%>%</span>
+            <% end %>
           </div>
           <p>
             Modern look and quality demo item is a streetwear-inspired collection that continues to break away from the conventions of mainstream fashion. Made in Italy, these black and brown clothing low-top shirts for
@@ -54,15 +58,6 @@
           <div class="row">
             <dt class="col-3">Model:</dt>
             <dd class="col-9"><%= @product.name %></dd>
-
-            <dt class="col-3">Color</dt>
-            <dd class="col-9">Brown</dd>
-
-            <dt class="col-3">Material</dt>
-            <dd class="col-9">Cotton, Jeans</dd>
-
-            <dt class="col-3">Brand</dt>
-            <dd class="col-9">Reebook</dd>
           </div>
           <hr/>
           <div class="add-to-cart" >

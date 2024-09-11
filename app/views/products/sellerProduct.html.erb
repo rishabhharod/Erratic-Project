@@ -24,7 +24,7 @@
         <td><%=product.name%></td>        
         <td><%=product.description %></td>   
         <td><%=product.price%></td>
-        <td><%=product.discount%></td>      
+        <td><%=product.discount.nil? ? 'no discount' : "#{product.discount}%"%></td>      
         <td><%=product.stock%></td>
         <td><%=product.seller_id%></td>
         <td><%=link_to edit_product_path(product),title:'Edit' do %>
