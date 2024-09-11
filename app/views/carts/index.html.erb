@@ -48,9 +48,15 @@
           <div>
             <div class="row">
               <div class="col-md-4">
-                <div class="mt-3">
+                <div class="d-block mt-3">
                   <p class="text-muted mb-2">Price</p>
-                  <h5 class="mb-0 mt-2">Rs. <%=item.product.price%> <span class="text-muted me-2"><del class="font-size-16 fw-normal"> Rs.500</del></span></h5>
+                  <h5 class="mb-0 mt-2">
+                  <% if item.product.discount.nil? %>
+                    <h5>₹<%=item.product.price%></h5>
+                  <% else %>
+                    <h5>₹<%=set_discount(item.product)%></h5><del class="del-text"><span><sup>₹</sup><%=item.product.price%></del>
+                    <span class="ms-5 font-size-20 fw-light text-danger">-<%=item.product.discount%>%</span>
+                  <% end %></h5>
                 </div>
               </div>
               <div class="col-md-5">
@@ -64,7 +70,7 @@
               <div class="col-md-3">
                 <div class="mt-3">
                   <p class="text-muted mb-2">Total</p>
-                  <h5><%=item.product.price * item.quantity%></h5>
+                  <h5><%=(set_discount(item.product) * item.quantity)%></h5>
                 </div>
               </div>
             </div>
@@ -84,7 +90,7 @@
     </div>
     <div class="col-xl-4">
       <div class="mt-5 mt-lg-0">
-        <div class="card border shadow-none">
+        <div class="card border shadow-none w-auto">
           <div class="card-header bg-transparent border-bottom py-3 px-4">
             <h5 class="font-size-16 mb-0">Order Summary</h5>
           </div>  

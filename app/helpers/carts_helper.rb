@@ -3,12 +3,16 @@ module CartsHelper
     set_cart
     @sub_total = 0
     @tax =  0
+    @discount = 0
     @shipping_charge = 0
     @cart_items = @cart.cart_items
     @cart_items.each do |item|
-    @sub_total += (item.product.price *  item.quantity)
+      @sub_total += (item.product.price *  item.quantity)
+      unless item.product.discount.nil?
+        @discount += (((item.product.price * item.product.discount)/100) * item.quantity)
+      end
     end
-    @tax = ((@sub_total * 18) / 100)
+    @tax = (((@sub_total - @discount) * 18) / 100)
     @sub_total >= 500 ? @shipping_charge = 0 : @shipping_charge = 50
   end
 
