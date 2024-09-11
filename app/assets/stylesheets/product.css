@@ -45,3 +45,21 @@ a{
   text-decoration:none;
   color: black;
 }
+.del-text{
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 0.25rem;
+    margin-bottom: 0.50rem;
+    color: #6c757d;
+}
+span{
+    margin-left: 3px;
+}
+.card{
+    width: 22rem;
+    margin: 15px;
+}
+.img-thumbnail{
+    padding: 15px;
+    width: 100%;
+}

@@ -35,6 +35,7 @@ color: #198754;
     cursor: pointer;
 }
 .address-radio{
+    accent-color: #39975600;
     height: 22px;
     width: 22px;
 }

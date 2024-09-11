@@ -8,7 +8,7 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="form-floating mb-3">
-          <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"email", autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, class:"form-control", id:"floatingInput", placeholder:"email", required:"true", autofocus: true, autocomplete: "email" %>
           <%= f.label :email, for:"floatingInput" %><br />
         </div>
 
