@@ -3,7 +3,7 @@
 </header>
 <section class="container shadow-lg p-3 mb-5 bg-body rounded w-50">
   <div class="p-5">
-    <%= form_for @seller , url: "/sellers" do |f| %>
+    <%= form_for @seller , url: "/seller" do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <div class="form-floating">
         <%= f.email_field :company_email,class:"form-control", id:"floatingInput", placeholder:"email", required:"true", autofocus: true %><br /><br />

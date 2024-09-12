@@ -1,6 +1,6 @@
 <div class="container shadow-lg p-3 mb-5 bg-body rounded w-50">
   <div class="container py-2 bg-light">  
-    <%= form_with model: @product,html:{multiple:true}  do |f| %> 
+    <%= form_with model: @product, html:{multiple:true}  do |f| %> 
 
       <%= f.label :name, class:"form-label" %>:
       <%= f.text_field :name, class:"form-control",  required:"true", autofocus: true, autocomplete: "name" %><br />
@@ -23,7 +23,7 @@
       <%= f.label :images, class:"form-label" %>
       <%= f.file_field :images, class:"form-control", required:"true", multiple: true %>
       <div class="row m-4">
-        <%= f.submit "SUBMIT", class:"btn btn-outline-success mx-auto w-50" %>
+        <%= f.submit 'SUBMIT', class:"btn btn-outline-success mx-auto w-50" %>
       </div>
     <% end %>
   </div>

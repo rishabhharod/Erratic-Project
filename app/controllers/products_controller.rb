@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  
+
   def index
       @products = Product.all
   end
@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
       end
     else
       flash[:notice] = 'Enter the seller details.'
-      redirect_to new_sellers_path
+      redirect_to new_seller_path
     end
   end
 
