@@ -14,7 +14,7 @@ class AddressesController < ApplicationController
   
   def create
     address = current_user.addresses.new(address_params)
-    if address.save
+    if address.save 
       flash[:notice] = 'New address added.'
       redirect_to addresses_path
     else
@@ -60,6 +60,6 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.permit(:full_address,:state,:city,:pincode,:landmark,:user_id,:address_type,:order_id,:is_checked)
+    params.require(:address).permit(:full_address,:state,:city,:pincode,:landmark,:user_id,:address_type,:order_id,:is_checked)
   end
 end
