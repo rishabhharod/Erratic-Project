@@ -26,6 +26,7 @@ class WishlistItemsController < ApplicationController
   end
 
   private
+  
   def set_wishlist
     @wishlist = current_user.wishlist || current_user.create_wishlist
   end

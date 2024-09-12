@@ -2,6 +2,7 @@ class SellersController < ApplicationController
   def new
     @seller = Seller.new
   end
+
   def create
     if current_user.role.eql?('seller') 
       if current_user.seller.present?
@@ -22,8 +23,11 @@ class SellersController < ApplicationController
       redirect_to root_path
     end
   end
+
   private 
+
   def seller_params
     params.require(:seller).permit(:company_email,:GSTIN_number,:contact,:category,:user_id)
   end
 end
+
