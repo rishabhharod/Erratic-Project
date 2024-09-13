@@ -1,24 +1,18 @@
 class UserMailer < ApplicationMailer
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.login_notification.subject
-  #
-  def login_notification
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def login_notification(user)
+    @user = user 
+    mail(to: @user.email, subject: 'welcome to our Ecommerce website.')
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.destroy_notification.subject
-  #
-  def destroy_notification
-    @greeting = "Hi"
+  def product_added(product,current_user)
+    @product = product
+    @current_user = current_user
+    mail(to: @current_user.email, subject: 'Dear seller your Product has been added.')
+  end
 
-    mail to: "to@example.org"
+  def seller_created(seller)
+    @seller = seller
+    mail(to: @seller.user.email, subject: "#{@seller.user.name} Now you are become a seller.")
   end
 end
