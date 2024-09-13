@@ -54,7 +54,7 @@
                   <% if item.product.discount.nil? %>
                     <h5>₹<%=item.product.price%></h5>
                   <% else %>
-                    <h5>₹<%=set_discount(item.product)%></h5><del class="del-text"><span><sup>₹</sup><%=item.product.price%></del>
+                    <h5>₹<%=item.product.discount.nil? ? item.product.price : (item.product.price - set_discount(item.product))%></h5><del class="del-text"><span><sup>₹</sup><%=item.product.price%></del>
                     <span class="ms-5 font-size-20 fw-light text-danger">-<%=item.product.discount%>%</span>
                   <% end %></h5>
                 </div>
