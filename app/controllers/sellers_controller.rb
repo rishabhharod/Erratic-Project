@@ -11,13 +11,14 @@ class SellersController < ApplicationController
       else
         @seller = Seller.new(seller_params)
         if @seller.save
+          UserMailer.seller_created(@seller).deliver_now
           flash[:notice] = 'Seller details submitted successfully.'
           redirect_to root_path
         else
           flash.now[:alert] = 'Seller id can not be genrated.'
           render :new
         end
-      end
+      endhttps://guides.rubyonrails.org/getting_started.html
     else
       flash[:notice] = 'You are not a seller'
       redirect_to root_path

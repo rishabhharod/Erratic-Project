@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
     if current_user.seller.present?
       @product = current_user.seller.products.new(product_params)
       if @product.save
+        UserMailer.product_added(@product,current_user).deliver_now
         attach_images(@product)
         flash[:notice] = 'Product created successfully.'
         redirect_to sellerProduct_path
@@ -27,7 +28,7 @@ class ProductsController < ApplicationController
   end
 
   def sellerProduct
-    @sellerProduct = current_user.seller.products.all
+    @sellerProducts = current_user.seller.products.all
   end
 
   def show
